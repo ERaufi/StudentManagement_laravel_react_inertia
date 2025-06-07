@@ -15,6 +15,8 @@ Route::controller(StudentsController::class)->group(function () {
     Route::get('students/{name?}/{last_name?}', 'withOptionalRouteParameters');
 });
 
+Route::inertia('teachers', 'Teachers/Index');
+
 
 Route::fallback(function () {
     return Inertia::render('Errors/NotFound');
