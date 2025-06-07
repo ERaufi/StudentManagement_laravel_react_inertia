@@ -15,16 +15,7 @@ Route::controller(StudentsController::class)->group(function () {
     Route::get('students/{name?}/{last_name?}', 'withOptionalRouteParameters');
 });
 
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', fn() => Inertia::render('DashboardComposition'))->name('dashboard');
-    Route::get('/profile', fn() => Inertia::render('Profile'))->name('profile');
-    Route::get('/dashboard-alt', fn() => Inertia::render('DashboardPersistent'))->name('dashboard.alt');
-    Route::get('/profile-alt', fn() => Inertia::render('ProfilePersistent'))->name('profile.alt');
-});
-
-
-require __DIR__ . '/auth.php';
+Route::inertia('teachers', 'Teachers/Index');
 
 
 Route::fallback(function () {
