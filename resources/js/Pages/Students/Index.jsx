@@ -1,12 +1,10 @@
 import { usePage } from '@inertiajs/react';
-import Sidebar from '@/Components/Sidebar';
-
+import DashboardLayout from '@/Layouts/DashboardLayout';
 export default function Students() {
     const { abc, dd } = usePage().props;
 
     return (
-        <div className="flex min-h-screen bg-gray-50">
-            <Sidebar />
+        <DashboardLayout>
             <main className="flex-1 p-6">
                 <header className="mb-6 border-b pb-4">
                     <h1 className="text-2xl font-bold text-gray-800">Students Page</h1>
@@ -22,7 +20,7 @@ export default function Students() {
                     </div>
                 </section>
             </main>
-        </div>
+        </DashboardLayout>
     );
 }
 
