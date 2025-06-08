@@ -2,7 +2,6 @@ import React from 'react';
 import Sidebar from '@/Components/Sidebar';
 
 export default function DashboardLayout({ children }) {
-    console.log('not here');
     return (
         <div className="flex">
             <Sidebar />
