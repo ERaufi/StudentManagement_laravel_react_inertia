@@ -1,4 +1,4 @@
-import DashboardLayout from '@/Layouts/DashboardLayout';
+import DashboardLayout from "@/Layouts/DashboardLayout";
 
 function Teachers() {
     return (
@@ -21,8 +21,10 @@ function Teachers() {
 }
 
 // Teachers.layout = function (page) {
-//     return <DashboardLayout>{page}</DashboardLayout>;
-// };
-Teachers.layout = page => <DashboardLayout>{page}</DashboardLayout>;
+//     return <DashboardLayout>{page}</DashboardLayout>
+// }
+Teachers.layout = page => <DashboardLayout>{page}</DashboardLayout>
+export default Teachers;
 
-export default Teachers; // ✅ this is correct
+
+
