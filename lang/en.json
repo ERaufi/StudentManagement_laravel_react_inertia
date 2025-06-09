@@ -1,0 +1,13 @@
+{
+    "Topbar (mounted at {{time}})": "Topbar (mounted at {{time}})",
+    "Teachers Page": "Teachers Page",
+    "Welcome to the Teacher management section.": "Welcome to the Teacher management section.",
+    "Students Page": "Students Page",
+    "Welcome to the student management section.": "Welcome to the student management section.",
+    "Here you can manage Teacher data, view details, and perform actions.": "Here you can manage Teacher data, view details, and perform actions.",
+    "Here you can manage student data, view details, and perform actions.": "Here you can manage student data, view details, and perform actions.",
+    "Name": "Name",
+    "Last Name": "Last Name",
+    "Language": "Language",
+    "welcome": "Welcome"
+}

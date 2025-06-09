@@ -1,0 +1,13 @@
+{
+    "Topbar (mounted at {{time}})": "टॉपबार (लोड किया गया {{time}} पर)",
+    "Teachers Page": "शिक्षक पृष्ठ",
+    "Welcome to the Teacher management section.": "शिक्षक प्रबंधन अनुभाग में आपका स्वागत है।",
+    "Students Page": "छात्र पृष्ठ",
+    "Welcome to the student management section.": "छात्र प्रबंधन अनुभाग में आपका स्वागत है।",
+    "Here you can manage Teacher data, view details, and perform actions.": "यहां आप शिक्षक डेटा प्रबंधित कर सकते हैं, विवरण देख सकते हैं और क्रियाएं कर सकते हैं।",
+    "Here you can manage student data, view details, and perform actions.": "यहां आप छात्र डेटा प्रबंधित कर सकते हैं, विवरण देख सकते हैं और क्रियाएं कर सकते हैं।",
+    "Name": "नाम",
+    "Last Name": "उपनाम",
+    "Language": "भाषा",
+    "welcome": "स्वागत है"
+}

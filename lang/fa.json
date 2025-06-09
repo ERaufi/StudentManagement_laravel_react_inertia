@@ -1,0 +1,13 @@
+{
+    "Topbar (mounted at {{time}})": "نوار بالا (بارگذاری شده در {{time}})",
+    "Teachers Page": "صفحه معلمان",
+    "Welcome to the Teacher management section.": "به بخش مدیریت معلمان خوش آمدید.",
+    "Students Page": "صفحه دانش‌آموزان",
+    "Welcome to the student management section.": "به بخش مدیریت دانش‌آموزان خوش آمدید.",
+    "Here you can manage Teacher data, view details, and perform actions.": "در اینجا می‌توانید اطلاعات معلمان را مدیریت کرده، جزئیات را مشاهده و اقداماتی انجام دهید.",
+    "Here you can manage student data, view details, and perform actions.": "در اینجا می‌توانید اطلاعات دانش‌آموزان را مدیریت کرده، جزئیات را مشاهده و اقداماتی انجام دهید.",
+    "Name": "نام",
+    "Last Name": "نام خانوادگی",
+    "Language": "زبان",
+    "welcome": "خوش آمدید"
+}
