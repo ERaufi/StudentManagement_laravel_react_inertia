@@ -2,7 +2,7 @@ import { usePage } from '@inertiajs/react';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { useTranslation } from 'react-i18next';
 export default function Students() {
-    const { abc, dd } = usePage().props;
+    const { abc, dd, user_name } = usePage().props;
     const { t, i18n } = useTranslation();
     return (
         <DashboardLayout>
@@ -18,6 +18,8 @@ export default function Students() {
                     <div className="bg-white p-4 rounded shadow text-sm text-gray-600">
                         <p><strong>{t('Name')}</strong> {abc}</p>
                         <p><strong>{t('Last Name')}</strong> {dd}</p>
+
+                        <p>The user name is {user_name}</p>
                     </div>
                 </section>
             </main>
