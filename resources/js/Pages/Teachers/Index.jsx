@@ -1,7 +1,8 @@
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { useTranslation } from 'react-i18next';
-
+import { usePage } from "@inertiajs/react";
 function Teachers() {
+    const { my_name } = usePage().props;
     const { t, i18n } = useTranslation();
 
     return (
@@ -18,6 +19,7 @@ function Teachers() {
                 <div className="bg-white p-4 rounded shadow text-sm text-gray-600">
                     <p><strong>{t('Name')}</strong></p>
                     <p><strong>{t('Last Name')}</strong></p>
+                    <p>my name is {my_name}</p>
                 </div>
             </section>
         </main>
