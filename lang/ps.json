@@ -1,0 +1,13 @@
+{
+    "Topbar (mounted at {{time}})": "لوړ بار (په {{time}} وخت کې پورته شو)",
+    "Teachers Page": "د ښوونکو پاڼه",
+    "Welcome to the Teacher management section.": "د ښوونکو مدیریت برخې ته ښه راغلاست.",
+    "Students Page": "د زده کوونکو پاڼه",
+    "Welcome to the student management section.": "د زده کوونکو مدیریت برخې ته ښه راغلاست.",
+    "Here you can manage Teacher data, view details, and perform actions.": "دلته تاسو کولی شئ د ښوونکو معلومات مدیریت کړئ، جزیات وګورئ، او اقدامات ترسره کړئ.",
+    "Here you can manage student data, view details, and perform actions.": "دلته تاسو کولی شئ د زده کوونکو معلومات مدیریت کړئ، جزیات وګورئ، او اقدامات ترسره کړئ.",
+    "Name": "نوم",
+    "Last Name": "تخلص",
+    "Language": "ژبه",
+    "welcome": "ښه راغلاست"
+}

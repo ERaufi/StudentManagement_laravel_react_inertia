@@ -1,0 +1,13 @@
+{
+    "Topbar (mounted at {{time}})": "Üst çubuk (şu saatte yüklendi: {{time}})",
+    "Teachers Page": "Öğretmenler Sayfası",
+    "Welcome to the Teacher management section.": "Öğretmen yönetim bölümüne hoş geldiniz.",
+    "Students Page": "Öğrenciler Sayfası",
+    "Welcome to the student management section.": "Öğrenci yönetim bölümüne hoş geldiniz.",
+    "Here you can manage Teacher data, view details, and perform actions.": "Burada öğretmen verilerini yönetebilir, ayrıntıları görüntüleyebilir ve işlemler gerçekleştirebilirsiniz.",
+    "Here you can manage student data, view details, and perform actions.": "Burada öğrenci verilerini yönetebilir, ayrıntıları görüntüleyebilir ve işlemler gerçekleştirebilirsiniz.",
+    "Name": "Ad",
+    "Last Name": "Soyad",
+    "Language": "Dil",
+    "welcome": "Hoş geldiniz"
+}
