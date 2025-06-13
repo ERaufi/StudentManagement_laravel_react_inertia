@@ -11,7 +11,9 @@ class StudentsController extends Controller
     //
     public function index()
     {
-        $students = Students::with('user:id,name')->get();
+        $students = Students::with('user:id,name')
+            ->paginate(10)
+            ->withQueryString();
 
         return Inertia::render('Students/Index', [
             'students' => $students,
