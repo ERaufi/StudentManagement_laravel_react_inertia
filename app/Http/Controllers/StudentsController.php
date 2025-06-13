@@ -16,6 +16,7 @@ class StudentsController extends Controller
 
     public function withData()
     {
+        sleep(3);
         return inertia('Students/Index', [
             'abc' => 'bbc',
             'dd' => 'dd'
