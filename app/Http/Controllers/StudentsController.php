@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Students;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -10,8 +11,11 @@ class StudentsController extends Controller
     //
     public function index()
     {
-        return inertia('Students/Index');
-        return Inertia::render('Students/Index');
+        $students = Students::with('user:id,name')->get();
+
+        return Inertia::render('Students/Index', [
+            'students' => $students,
+        ]);
     }
 
     public function withData()
