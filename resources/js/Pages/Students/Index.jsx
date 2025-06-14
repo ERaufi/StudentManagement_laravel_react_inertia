@@ -1,10 +1,22 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { usePage, router } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react'; // ✅ New
 
 export default function StudentsIndex() {
-    const { students } = usePage().props;
+    const { students, search: initialSearch } = usePage().props;
     const { t } = useTranslation();
+
+    const [search, setSearch] = useState(initialSearch || '');
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+
+        router.get('students', { search }, {
+            preserveState: true,
+            replace: true,
+        });
+    };
 
     // ✅ New: handle pagination links
     const handlePageChange = (url) => {
@@ -17,6 +29,22 @@ export default function StudentsIndex() {
                     <h1 className="text-2xl font-bold text-gray-800">{t('Students Page')}</h1>
                     <p className="text-sm text-gray-500">{t('Welcome to the student management section.')}</p>
                 </header>
+
+                {/* ✅ New: Search form */}
+                <form onSubmit={handleSearch} className="mb-4 flex gap-2">
+                    <input
+                        type="text"
+                        placeholder={t('Search students...')}
+                        className="w-full md:w-1/3 px-3 py-2 border rounded"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+                        {t('Search')}
+                    </button>
+                </form>
+
+
                 <div className="overflow-x-auto bg-white rounded shadow p-4">
                     <table className="min-w-full table-auto">
                         <thead>
