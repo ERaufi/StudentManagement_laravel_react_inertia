@@ -1,11 +1,15 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
-import { usePage } from '@inertiajs/react';
+import { usePage, router } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
 
 export default function StudentsIndex() {
     const { students } = usePage().props;
     const { t } = useTranslation();
 
+    // ✅ New: handle pagination links
+    const handlePageChange = (url) => {
+        if (url) router.visit(url);
+    };
     return (
         <DashboardLayout>
             <main className="flex-1 p-6">
@@ -25,7 +29,7 @@ export default function StudentsIndex() {
                             </tr>
                         </thead>
                         <tbody>
-                            {students.map((student, index) => (
+                            {students.data.map((student, index) => (
                                 <tr key={student.id} className="border-b text-sm">
                                     <td className="p-2">{index + 1}</td>
                                     <td className="p-2">{student.name}</td>
@@ -36,6 +40,20 @@ export default function StudentsIndex() {
                             ))}
                         </tbody>
                     </table>
+                    <div className="flex justify-end mt-4 gap-2 text-sm">
+                        {students.links.map((link, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => handlePageChange(link.url)}
+                                disabled={!link.url}
+                                className={`px-3 py-1 rounded ${link.active
+                                    ? 'bg-blue-600 text-white'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                    } ${!link.url ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                dangerouslySetInnerHTML={{ __html: link.label }}
+                            />
+                        ))}
+                    </div>
                 </div>
             </main>
         </DashboardLayout>

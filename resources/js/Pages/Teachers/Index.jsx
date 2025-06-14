@@ -1,10 +1,14 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
-import { usePage } from '@inertiajs/react';
+import { usePage, router } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
 
 export default function TeachersIndex() {
     const { teachers } = usePage().props;
     const { t } = useTranslation();
+
+    const handlePageChange = (url) => {
+        if (url) router.visit(url);
+    };
 
     return (
         <DashboardLayout>
@@ -24,7 +28,7 @@ export default function TeachersIndex() {
                             </tr>
                         </thead>
                         <tbody>
-                            {teachers.map((teacher, index) => (
+                            {teachers.data.map((teacher, index) => (
                                 <tr key={teacher.id} className="border-b text-sm">
                                     <td className="p-2">{index + 1}</td>
                                     <td className="p-2">{teacher.name}</td>
@@ -34,6 +38,20 @@ export default function TeachersIndex() {
                             ))}
                         </tbody>
                     </table>
+                    <div className="flex justify-end mt-4 gap-2 text-sm">
+                        {teachers.links.map((link, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => handlePageChange(link.url)}
+                                disabled={!link.url}
+                                className={`px-3 py-1 rounded ${link.active
+                                    ? 'bg-blue-600 text-white'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                    } ${!link.url ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                dangerouslySetInnerHTML={{ __html: link.label }}
+                            />
+                        ))}
+                    </div>
                 </div>
             </main>
         </DashboardLayout>
