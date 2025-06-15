@@ -32,4 +32,22 @@ class TeachersController extends Controller
             'direction' => $sortDirection // ✅ New
         ]);
     }
+
+
+    public function create()
+    {
+        return Inertia::render('Teachers/Create');
+    }
+
+    public function store(Request $request)
+    {
+        $teacher = new Teachers();
+        $teacher->name = $request->name;
+        $teacher->email = $request->email;
+        $teacher->phone = $request->phone;
+        $teacher->user_id = 1;
+        $teacher->save();
+
+        return redirect()->route('teachers.index');
+    }
 }

@@ -32,28 +32,23 @@ class StudentsController extends Controller
         ]);
     }
 
-    public function withData()
+    public function create()
     {
-        sleep(3);
-        return inertia('Students/Index', [
-            'abc' => __('Name'),
-            'dd' => __('Name')
-        ]);
+        return Inertia::render('Students/Create');
     }
 
-    public function withRouteParameters($name, $last_name)
+    public function store(Request $request)
     {
-        return Inertia::render('Students/Index', [
-            'abc' => $name,
-            'dd' => $last_name,
-        ]);
-    }
+        $student = new Students();
+        $student->name = $request->name;
+        $student->email = $request->email;
+        $student->age = $request->age;
+        $student->date_of_birth = $request->date_of_birth;
+        $student->gender = $request->gender;
+        $student->score = $request->score;
+        $student->user_id = 1;
+        $student->save();
 
-    public function withOptionalRouteParameters($name = 'Guest', $last_name = 'User')
-    {
-        return Inertia::render('Students/Index', [
-            'abc' => $name,
-            'dd' => $last_name,
-        ]);
+        return redirect()->route('students.index');
     }
 }

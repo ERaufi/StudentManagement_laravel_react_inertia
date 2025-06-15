@@ -1,5 +1,5 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
-import { usePage, router } from '@inertiajs/react';
+import { usePage, router, Link } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react'; // ✅ New
 
@@ -64,6 +64,12 @@ export default function TeachersIndex() {
 
 
                 <div className="overflow-x-auto bg-white rounded shadow p-4">
+                    <Link
+                        href={route('teachers.create')}
+                        className="inline-block mb-4 px-4 py-2 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-700 transition"
+                    >
+                        {t('Create Teacher')}
+                    </Link>
                     <table className="min-w-full table-auto">
                         <thead>
                             <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
