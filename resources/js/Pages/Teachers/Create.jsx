@@ -6,6 +6,7 @@ export default function CreateTeacher() {
         name: '',
         email: '',
         phone: '',
+        image: null,
     });
 
     const handleSubmit = (e) => {
@@ -53,7 +54,15 @@ export default function CreateTeacher() {
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
                         </div>
-
+                        <div className="col-span-full">
+                            <label className="block text-gray-700 font-medium mb-1">Image</label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={e => setData('image', e.target.files[0])}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                            />
+                        </div>
                         <div className="pt-2">
                             <button
                                 type="submit"

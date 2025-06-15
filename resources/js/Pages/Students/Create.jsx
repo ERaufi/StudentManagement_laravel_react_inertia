@@ -9,7 +9,9 @@ export default function CreateStudent() {
         date_of_birth: '',
         gender: 'm',
         score: '',
+        image: null,
     });
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -93,7 +95,15 @@ export default function CreateStudent() {
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
                         </div>
-
+                        <div className="col-span-full">
+                            <label className="block text-gray-700 font-medium mb-1">Image</label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={e => setData('image', e.target.files[0])}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                            />
+                        </div>
                         <div className="col-span-full mt-4">
                             <button
                                 type="submit"
