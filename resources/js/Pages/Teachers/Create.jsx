@@ -6,30 +6,12 @@ export default function CreateTeacher() {
         name: '',
         email: '',
         phone: '',
+        image: null,
     });
-
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
-
-    const [image, setImage] = useState(null);
-
-    const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        Object.entries(form).forEach(([key, value]) => {
-            formData.append(key, value);
-        });
-        if (image) {
-            formData.append('image', image);
-        }
-        router.post(route('teachers.store'), formData, {
-            forceFormData: true,
-        });
+        post(route('teachers.store'));
     };
 
     return (
@@ -77,16 +59,7 @@ export default function CreateTeacher() {
                             <input
                                 type="file"
                                 accept="image/*"
-                                onChange={handleImageChange}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                            />
-                        </div>
-                        <div className="col-span-full">
-                            <label className="block text-gray-700 font-medium mb-1">Image</label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageChange}
+                                onChange={e => setData('image', e.target.files[0])}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
                         </div>
