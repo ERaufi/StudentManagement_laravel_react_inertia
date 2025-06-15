@@ -1,19 +1,21 @@
 import { useState } from 'react';
-import { router } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 
 export default function CreateTeacher() {
+    const { errors } = usePage().props;
+
     const [form, setForm] = useState({
         name: '',
         email: '',
         phone: '',
     });
 
+    const [image, setImage] = useState(null);
+
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
-
-    const [image, setImage] = useState(null);
 
     const handleImageChange = (e) => {
         setImage(e.target.files[0]);
@@ -40,14 +42,22 @@ export default function CreateTeacher() {
                     <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Create Teacher</h1>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
+                        {Object.keys(errors).length > 0 && (
+                            <div className="text-red-600 text-sm mb-4">
+                                Please fix the form errors below.
+                            </div>
+                        )}
+
                         <div>
                             <label className="block text-gray-700 font-medium mb-1">Name</label>
                             <input
                                 name="name"
                                 placeholder="Enter name"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                                className={`w-full px-4 py-2 border rounded-lg outline-none ${errors.name ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                 onChange={handleChange}
                             />
+                            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                         </div>
 
                         <div>
@@ -56,9 +66,11 @@ export default function CreateTeacher() {
                                 name="email"
                                 type="email"
                                 placeholder="Enter email"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                                className={`w-full px-4 py-2 border rounded-lg outline-none ${errors.email ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                 onChange={handleChange}
                             />
+                            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                         </div>
 
                         <div>
@@ -66,19 +78,25 @@ export default function CreateTeacher() {
                             <input
                                 name="phone"
                                 placeholder="Enter phone number"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                                className={`w-full px-4 py-2 border rounded-lg outline-none ${errors.phone ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                                 onChange={handleChange}
                             />
+                            {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                         </div>
-                        <div className="col-span-full">
+
+                        <div>
                             <label className="block text-gray-700 font-medium mb-1">Image</label>
                             <input
                                 type="file"
                                 accept="image/*"
                                 onChange={handleImageChange}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                                className={`w-full px-4 py-2 border rounded-lg outline-none ${errors.image ? 'border-red-500' : 'border-gray-300'
+                                    }`}
                             />
+                            {errors.image && <p className="text-red-500 text-sm mt-1">{errors.image}</p>}
                         </div>
+
                         <div className="pt-2">
                             <button
                                 type="submit"
