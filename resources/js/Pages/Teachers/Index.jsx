@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react'; // ✅ New
 
 export default function TeachersIndex() {
-    const { teachers, search: initialSearch } = usePage().props;
+    const { teachers, search: initialSearch, sort, direction } = usePage().props;
     const { t } = useTranslation();
 
     const [search, setSearch] = useState(initialSearch || '');
@@ -16,6 +16,25 @@ export default function TeachersIndex() {
             preserveState: true,
             replace: true,
         });
+    };
+
+
+    const handleSort = (field) => {
+        const newDirection = sort === field && direction === 'asc' ? 'desc' : 'asc';
+        router.get('teachers', {
+            search,
+            sort: field,
+            direction: newDirection,
+        }, {
+            preserveState: true,
+            replace: true,
+        });
+    };
+
+    // ✅ New: Show arrow for active sort
+    const renderSortArrow = (field) => {
+        if (sort !== field) return null;
+        return direction === 'asc' ? ' ▲' : ' ▼';
     };
 
     const handlePageChange = (url) => {
@@ -48,16 +67,16 @@ export default function TeachersIndex() {
                     <table className="min-w-full table-auto">
                         <thead>
                             <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
-                                <th className="p-2">#</th>
-                                <th className="p-2">Name</th>
-                                <th className="p-2">Email</th>
-                                <th className="p-2">Phone</th>
+                                <th className="p-2 cursor-pointer" onClick={() => handleSort('id')}>#{renderSortArrow('id')}</th>
+                                <th className="p-2 cursor-pointer" onClick={() => handleSort('name')}>Name{renderSortArrow('name')}</th>
+                                <th className="p-2 cursor-pointer" onClick={() => handleSort('email')}>Email{renderSortArrow('email')}</th>
+                                <th className="p-2 cursor-pointer" onClick={() => handleSort('phone')}>Phone{renderSortArrow('phone')}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {teachers.data.map((teacher, index) => (
+                            {teachers.data.map((teacher) => (
                                 <tr key={teacher.id} className="border-b text-sm">
-                                    <td className="p-2">{index + 1}</td>
+                                    <td className="p-2">{teacher.id}</td>
                                     <td className="p-2">{teacher.name}</td>
                                     <td className="p-2">{teacher.email}</td>
                                     <td className="p-2">{teacher.phone}</td>
