@@ -41,6 +41,13 @@ class TeachersController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:teachers,email',
+            'phone' => 'required|string|max:20',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
         $teacher = new Teachers();
         $teacher->name = $request->name;
         $teacher->email = $request->email;

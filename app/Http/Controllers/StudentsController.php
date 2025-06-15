@@ -39,6 +39,16 @@ class StudentsController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:students,email',
+            'age' => 'required|integer|min:1|max:150',
+            'date_of_birth' => 'nullable|date',
+            'gender' => 'required|in:m,f',
+            'score' => 'required|integer|min:0|max:100',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
         $student = new Students();
         $student->name = $request->name;
         $student->email = $request->email;
@@ -55,7 +65,7 @@ class StudentsController extends Controller
         }
 
 
-        
+
         $student->save();
 
         return redirect()->route('students.index');
