@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import { router } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 
 export default function CreateStudent() {
-    const [form, setForm] = useState({
+    const { data, setData, post, processing, errors } = useForm({
         name: '',
         email: '',
         age: '',
@@ -12,13 +11,9 @@ export default function CreateStudent() {
         score: '',
     });
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        router.post(route('students.store'), form);
+        post(route('students.store'));
     };
 
     return (
@@ -32,10 +27,12 @@ export default function CreateStudent() {
                             <label className="block text-gray-700 font-medium mb-1">Name</label>
                             <input
                                 name="name"
+                                value={data.name}
+                                onChange={(e) => setData('name', e.target.value)}
                                 placeholder="Enter name"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                onChange={handleChange}
                             />
+                            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                         </div>
 
                         <div className="col-span-full">
@@ -43,10 +40,12 @@ export default function CreateStudent() {
                             <input
                                 name="email"
                                 type="email"
+                                value={data.email}
+                                onChange={(e) => setData('email', e.target.value)}
                                 placeholder="Enter email"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                onChange={handleChange}
                             />
+                            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                         </div>
 
                         <div>
@@ -54,10 +53,12 @@ export default function CreateStudent() {
                             <input
                                 name="age"
                                 type="number"
+                                value={data.age}
+                                onChange={(e) => setData('age', e.target.value)}
                                 placeholder="Age"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                onChange={handleChange}
                             />
+                            {errors.age && <p className="text-red-500 text-sm mt-1">{errors.age}</p>}
                         </div>
 
                         <div>
@@ -65,22 +66,25 @@ export default function CreateStudent() {
                             <input
                                 name="date_of_birth"
                                 type="date"
+                                value={data.date_of_birth}
+                                onChange={(e) => setData('date_of_birth', e.target.value)}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                onChange={handleChange}
                             />
+                            {errors.date_of_birth && <p className="text-red-500 text-sm mt-1">{errors.date_of_birth}</p>}
                         </div>
 
                         <div>
                             <label className="block text-gray-700 font-medium mb-1">Gender</label>
                             <select
                                 name="gender"
+                                value={data.gender}
+                                onChange={(e) => setData('gender', e.target.value)}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                value={form.gender}
-                                onChange={handleChange}
                             >
                                 <option value="m">Male</option>
                                 <option value="f">Female</option>
                             </select>
+                            {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender}</p>}
                         </div>
 
                         <div>
@@ -88,15 +92,18 @@ export default function CreateStudent() {
                             <input
                                 name="score"
                                 type="number"
+                                value={data.score}
+                                onChange={(e) => setData('score', e.target.value)}
                                 placeholder="Score"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                onChange={handleChange}
                             />
+                            {errors.score && <p className="text-red-500 text-sm mt-1">{errors.score}</p>}
                         </div>
 
                         <div className="col-span-full mt-4">
                             <button
                                 type="submit"
+                                disabled={processing}
                                 className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200 text-lg font-semibold"
                             >
                                 Save Student
