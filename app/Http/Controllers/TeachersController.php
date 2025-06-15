@@ -46,6 +46,14 @@ class TeachersController extends Controller
         $teacher->email = $request->email;
         $teacher->phone = $request->phone;
         $teacher->user_id = 1;
+
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('teachers', 'public');
+            $teacher->image = $path;
+        }
+
+
         $teacher->save();
 
         return redirect()->route('teachers.index');
