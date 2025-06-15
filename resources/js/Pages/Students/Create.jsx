@@ -1,11 +1,8 @@
-import { useState } from 'react';
-import { router, usePage } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 
 export default function CreateStudent() {
-    const { errors } = usePage().props;
-
-    const [form, setForm] = useState({
+    const { data, setData, post, errors } = useForm({
         name: '',
         email: '',
         age: '',
@@ -28,12 +25,6 @@ export default function CreateStudent() {
                     <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Create Student</h1>
 
                     <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {Object.keys(errors).length > 0 && (
-                            <div className="col-span-full text-red-600 text-sm mb-4">
-                                Please fix the form errors below.
-                            </div>
-                        )}
-
                         <div className="col-span-full">
                             <label className="block text-gray-700 font-medium mb-1">Name</label>
                             <input
@@ -41,11 +32,10 @@ export default function CreateStudent() {
                                 value={data.name}
                                 onChange={(e) => setData('name', e.target.value)}
                                 placeholder="Enter name"
-                                className={`w-full px-4 py-2 border rounded-lg outline-none ${errors.name ? 'border-red-500' : 'border-gray-300'
-                                    }`}
-                                onChange={handleChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                            {errors.name && <div>{errors.name}</div>}
+
                         </div>
 
                         <div className="col-span-full">
@@ -56,11 +46,10 @@ export default function CreateStudent() {
                                 value={data.email}
                                 onChange={(e) => setData('email', e.target.value)}
                                 placeholder="Enter email"
-                                className={`w-full px-4 py-2 border rounded-lg outline-none ${errors.email ? 'border-red-500' : 'border-gray-300'
-                                    }`}
-                                onChange={handleChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                            {errors.name && <div>{errors.email}</div>}
+
                         </div>
 
                         <div>
@@ -71,11 +60,10 @@ export default function CreateStudent() {
                                 value={data.age}
                                 onChange={(e) => setData('age', e.target.value)}
                                 placeholder="Age"
-                                className={`w-full px-4 py-2 border rounded-lg outline-none ${errors.age ? 'border-red-500' : 'border-gray-300'
-                                    }`}
-                                onChange={handleChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.age && <p className="text-red-500 text-sm mt-1">{errors.age}</p>}
+                            {errors.name && <div>{errors.age}</div>}
+
                         </div>
 
                         <div>
@@ -83,11 +71,12 @@ export default function CreateStudent() {
                             <input
                                 name="date_of_birth"
                                 type="date"
-                                className={`w-full px-4 py-2 border rounded-lg outline-none ${errors.date_of_birth ? 'border-red-500' : 'border-gray-300'
-                                    }`}
-                                onChange={handleChange}
+                                value={data.date_of_birth}
+                                onChange={(e) => setData('date_of_birth', e.target.value)}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.date_of_birth && <p className="text-red-500 text-sm mt-1">{errors.date_of_birth}</p>}
+                            {errors.name && <div>{errors.date_of_birth}</div>}
+
                         </div>
 
                         <div>
@@ -101,6 +90,8 @@ export default function CreateStudent() {
                                 <option value="m">Male</option>
                                 <option value="f">Female</option>
                             </select>
+                            {errors.name && <div>{errors.gender}</div>}
+
                         </div>
 
                         <div>
@@ -111,25 +102,22 @@ export default function CreateStudent() {
                                 value={data.score}
                                 onChange={(e) => setData('score', e.target.value)}
                                 placeholder="Score"
-                                className={`w-full px-4 py-2 border rounded-lg outline-none ${errors.score ? 'border-red-500' : 'border-gray-300'
-                                    }`}
-                                onChange={handleChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.score && <p className="text-red-500 text-sm mt-1">{errors.score}</p>}
-                        </div>
+                            {errors.name && <div>{errors.score}</div>}
 
+                        </div>
                         <div className="col-span-full">
                             <label className="block text-gray-700 font-medium mb-1">Image</label>
                             <input
                                 type="file"
                                 accept="image/*"
-                                onChange={handleImageChange}
-                                className={`w-full px-4 py-2 border rounded-lg outline-none ${errors.image ? 'border-red-500' : 'border-gray-300'
-                                    }`}
+                                onChange={e => setData('image', e.target.files[0])}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.image && <p className="text-red-500 text-sm mt-1">{errors.image}</p>}
-                        </div>
+                            {errors.name && <div>{errors.image}</div>}
 
+                        </div>
                         <div className="col-span-full mt-4">
                             <button
                                 type="submit"
