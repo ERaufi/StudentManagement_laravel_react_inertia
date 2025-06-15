@@ -47,6 +47,15 @@ class StudentsController extends Controller
         $student->gender = $request->gender;
         $student->score = $request->score;
         $student->user_id = 1;
+
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('students', 'public');
+            $student->image = $path;
+        }
+
+
+        
         $student->save();
 
         return redirect()->route('students.index');

@@ -12,13 +12,28 @@ export default function CreateStudent() {
         score: '',
     });
 
+    const [image, setImage] = useState(null);
+
+    const handleImageChange = (e) => {
+        setImage(e.target.files[0]);
+    };
+
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        router.post(route('students.store'), form);
+        const formData = new FormData();
+        Object.entries(form).forEach(([key, value]) => {
+            formData.append(key, value);
+        });
+        if (image) {
+            formData.append('image', image);
+        }
+        router.post(route('students.store'), formData, {
+            forceFormData: true,
+        });
     };
 
     return (
@@ -93,7 +108,15 @@ export default function CreateStudent() {
                                 onChange={handleChange}
                             />
                         </div>
-
+                        <div className="col-span-full">
+                            <label className="block text-gray-700 font-medium mb-1">Image</label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                            />
+                        </div>
                         <div className="col-span-full mt-4">
                             <button
                                 type="submit"
