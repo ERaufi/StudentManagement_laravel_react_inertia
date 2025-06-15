@@ -2,7 +2,7 @@ import { useForm } from '@inertiajs/react';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 
 export default function CreateStudent() {
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post } = useForm({
         name: '',
         email: '',
         age: '',
@@ -32,7 +32,6 @@ export default function CreateStudent() {
                                 placeholder="Enter name"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                         </div>
 
                         <div className="col-span-full">
@@ -45,7 +44,6 @@ export default function CreateStudent() {
                                 placeholder="Enter email"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                         </div>
 
                         <div>
@@ -58,7 +56,6 @@ export default function CreateStudent() {
                                 placeholder="Age"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.age && <p className="text-red-500 text-sm mt-1">{errors.age}</p>}
                         </div>
 
                         <div>
@@ -70,7 +67,6 @@ export default function CreateStudent() {
                                 onChange={(e) => setData('date_of_birth', e.target.value)}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.date_of_birth && <p className="text-red-500 text-sm mt-1">{errors.date_of_birth}</p>}
                         </div>
 
                         <div>
@@ -84,7 +80,6 @@ export default function CreateStudent() {
                                 <option value="m">Male</option>
                                 <option value="f">Female</option>
                             </select>
-                            {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender}</p>}
                         </div>
 
                         <div>
@@ -97,13 +92,11 @@ export default function CreateStudent() {
                                 placeholder="Score"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.score && <p className="text-red-500 text-sm mt-1">{errors.score}</p>}
                         </div>
 
                         <div className="col-span-full mt-4">
                             <button
                                 type="submit"
-                                disabled={processing}
                                 className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200 text-lg font-semibold"
                             >
                                 Save Student
