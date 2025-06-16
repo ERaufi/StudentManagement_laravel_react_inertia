@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react'; // ✅ New
 
 export default function StudentsIndex() {
-    const { students, search: initialSearch, sort, direction } = usePage().props;
+    const { students, search: initialSearch, sort, direction, flash } = usePage().props;
     const { t } = useTranslation();
 
     const [search, setSearch] = useState(initialSearch || '');
@@ -40,9 +40,20 @@ export default function StudentsIndex() {
     const handlePageChange = (url) => {
         if (url) router.visit(url);
     };
+
+    const [msg, setMsg] = useState(flash.success);
+
+    setTimeout(() => {
+        setMsg(null);
+    }, 2000);
     return (
         <DashboardLayout>
             <main className="flex-1 p-6">
+                {msg && (
+                    <div className="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded">
+                        {msg}
+                    </div>
+                )}
                 <header className="mb-6 border-b pb-4">
                     <h1 className="text-2xl font-bold text-gray-800">{t('Students Page')}</h1>
                     <p className="text-sm text-gray-500">{t('Welcome to the student management section.')}</p>

@@ -68,6 +68,6 @@ class StudentsController extends Controller
 
         $student->save();
 
-        return redirect()->route('students.index');
+        return redirect()->route('students.index')->with('success', 'Student created successfully.');
     }
 }
