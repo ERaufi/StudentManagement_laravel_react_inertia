@@ -2,7 +2,7 @@ import { useForm } from '@inertiajs/react';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 
 export default function CreateTeacher() {
-    const { data, setData, post } = useForm({
+    const { data, setData, post, errors } = useForm({
         name: '',
         email: '',
         phone: '',
@@ -30,6 +30,7 @@ export default function CreateTeacher() {
                                 placeholder="Enter name"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
+                            {errors.name && <div>{errors.name}</div>}
                         </div>
 
                         <div>
@@ -42,6 +43,8 @@ export default function CreateTeacher() {
                                 placeholder="Enter email"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
+                            {errors.name && <div>{errors.email}</div>}
+
                         </div>
 
                         <div>
@@ -53,6 +56,8 @@ export default function CreateTeacher() {
                                 placeholder="Enter phone number"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
+                            {errors.name && <div>{errors.phone}</div>}
+
                         </div>
                         <div className="col-span-full">
                             <label className="block text-gray-700 font-medium mb-1">Image</label>
@@ -62,6 +67,8 @@ export default function CreateTeacher() {
                                 onChange={e => setData('image', e.target.files[0])}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
+                            {errors.name && <div>{errors.image}</div>}
+
                         </div>
                         <div className="pt-2">
                             <button
