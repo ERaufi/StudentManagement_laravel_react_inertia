@@ -13,7 +13,8 @@ Route::controller(StudentsController::class)->group(function () {
     Route::get('students', 'index')->name('students.index');
     Route::get('/students/create', 'create')->name('students.create');
     Route::post('/students', 'store')->name('students.store');
-
+    Route::get('student/edit/{id}', 'edit');
+    Route::post('student-update', 'update');
 
     // Route::get('students', 'withData');
     // Route::get('students/{name}/{last_name}', 'withRouteParameters');

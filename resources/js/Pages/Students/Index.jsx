@@ -87,6 +87,7 @@ export default function StudentsIndex() {
                                 <th className="p-2 cursor-pointer" onClick={() => handleSort('email')}>{t('Email')}{renderSortArrow('email')}</th>
                                 <th className="p-2 cursor-pointer" onClick={() => handleSort('gender')}>{t('Gender')}{renderSortArrow('gender')}</th>
                                 <th className="p-2 cursor-pointer" onClick={() => handleSort('score')}>{t('Score')}{renderSortArrow('score')}</th>
+                                <th className='p-2'>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,6 +98,9 @@ export default function StudentsIndex() {
                                     <td className="p-2">{student.email}</td>
                                     <td className="p-2">{student.gender}</td>
                                     <td className="p-2">{student.score}</td>
+                                    <td>
+                                        <Link href={`student/edit/${student.id}`}>Edit</Link>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

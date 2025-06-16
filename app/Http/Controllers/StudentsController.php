@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Students;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class StudentsController extends Controller
@@ -69,5 +70,48 @@ class StudentsController extends Controller
         $student->save();
 
         return redirect()->route('students.index')->with('success', 'Student created successfully.');
+    }
+
+    public function edit($id)
+    {
+        $student = Students::where('id', $id)->first();
+        return Inertia::render('Students/Edit', [
+            'student' => $student
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => 'required|exists:students,id',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:students,email,' . $request->id,
+            'age' => 'required|integer|min:1|max:150',
+            'date_of_birth' => 'nullable|date',
+            'gender' => 'required|in:m,f',
+            'score' => 'required|integer|min:0|max:100',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $student = Students::where('id', $request->id)->first();
+        $student->name = $request->name;
+        $student->email = $request->email;
+        $student->age = $request->age;
+        $student->date_of_birth = $request->date_of_birth;
+        $student->gender = $request->gender;
+        $student->score = $request->score;
+
+        if ($request->hasFile('image')) {
+            if ($student->image && Storage::disk('public')->exists($student->image)) {
+                Storage::disk('public')->delete($student->image);
+            }
+
+            $path = $request->file('image')->store('students', 'public');
+            $student->image = $path;
+        }
+
+        $student->save();
+
+        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
     }
 }
