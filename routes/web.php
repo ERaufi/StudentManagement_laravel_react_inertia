@@ -15,7 +15,7 @@ Route::controller(StudentsController::class)->group(function () {
     Route::post('/students', 'store')->name('students.store');
     Route::get('student/edit/{id}', 'edit');
     Route::post('student-update', 'update');
-
+    Route::delete('student/destroy/{id}', 'destroy')->name('students.destroy');
     // Route::get('students', 'withData');
     // Route::get('students/{name}/{last_name}', 'withRouteParameters');
     // Route::get('students/{name?}/{last_name?}', 'withOptionalRouteParameters');
@@ -26,6 +26,7 @@ Route::get('/teachers/create', [TeachersController::class, 'create'])->name('tea
 Route::post('/teachers', [TeachersController::class, 'store'])->name('teachers.store');
 Route::get('teacher/edit/{id}', [TeachersController::class, 'edit']);
 Route::post('teacher-update', [TeachersController::class, 'update'])->name('teachers.update');
+Route::delete('teachers/delete/{id}', [TeachersController::class, 'destroy'])->name('teachers.destroy');
 
 
 // Route::inertia('teachers', 'Teachers/Index');

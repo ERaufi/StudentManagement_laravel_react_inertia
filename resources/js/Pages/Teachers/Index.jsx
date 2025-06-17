@@ -47,6 +47,11 @@ export default function TeachersIndex() {
         setMsg(null);
     }, 2000);
 
+    const handleDelete = (id) => {
+        if (confirm('Are you sure you want to delete this teacher?')) {
+            router.delete(route('teachers.destroy', id));
+        }
+    };
     return (
         <DashboardLayout>
             <main className="flex-1 p-6">
@@ -107,6 +112,12 @@ export default function TeachersIndex() {
                                         >
                                             Edit
                                         </Link>
+                                        <button
+                                            onClick={() => handleDelete(teacher.id)}
+                                            className="inline-block px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                                        >
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
