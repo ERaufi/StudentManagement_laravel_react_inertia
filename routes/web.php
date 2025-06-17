@@ -13,7 +13,8 @@ Route::controller(StudentsController::class)->group(function () {
     Route::get('students', 'index')->name('students.index');
     Route::get('/students/create', 'create')->name('students.create');
     Route::post('/students', 'store')->name('students.store');
-
+    Route::get('student/edit/{id}', 'edit');
+    Route::post('student-update', 'update');
 
     // Route::get('students', 'withData');
     // Route::get('students/{name}/{last_name}', 'withRouteParameters');
@@ -23,6 +24,9 @@ Route::controller(StudentsController::class)->group(function () {
 Route::get('/teachers', [TeachersController::class, 'index'])->name('teachers.index');
 Route::get('/teachers/create', [TeachersController::class, 'create'])->name('teachers.create');
 Route::post('/teachers', [TeachersController::class, 'store'])->name('teachers.store');
+Route::get('teacher/edit/{id}', [TeachersController::class, 'edit']);
+Route::post('teacher-update', [TeachersController::class, 'update'])->name('teachers.update');
+
 
 // Route::inertia('teachers', 'Teachers/Index');
 
