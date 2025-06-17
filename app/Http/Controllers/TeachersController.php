@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Teachers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class TeachersController extends Controller
@@ -64,5 +65,44 @@ class TeachersController extends Controller
         $teacher->save();
 
         return redirect()->route('teachers.index')->with('success', 'Student created successfully.');
+    }
+
+
+    public function edit($id)
+    {
+        $student = Teachers::where('id', $id)->first();
+        return Inertia::render('Teachers/Edit', [
+            'teacher' => $student
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:teachers,email',
+            'phone' => 'required|string|max:20',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $teacher = Teachers::where('id', $request->id)->first();
+        $teacher->name = $request->name;
+        $teacher->email = $request->email;
+        $teacher->phone = $request->phone;
+        $teacher->user_id = 1;
+
+
+        if ($request->hasFile('image')) {
+            if ($teacher->image && Storage::disk('public')->exists($teacher->image)) {
+                Storage::disk('public')->delete($teacher->image);
+            }
+
+            $path = $request->file('image')->store('teachers', 'public');
+            $teacher->image = $path;
+        }
+
+        $teacher->update();
+
+        return redirect()->route('teachers.index')->with('success', 'Teacher created successfully.');
     }
 }

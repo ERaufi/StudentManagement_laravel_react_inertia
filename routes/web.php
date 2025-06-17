@@ -24,6 +24,9 @@ Route::controller(StudentsController::class)->group(function () {
 Route::get('/teachers', [TeachersController::class, 'index'])->name('teachers.index');
 Route::get('/teachers/create', [TeachersController::class, 'create'])->name('teachers.create');
 Route::post('/teachers', [TeachersController::class, 'store'])->name('teachers.store');
+Route::get('teacher/edit/{id}', [TeachersController::class, 'edit']);
+Route::post('teacher-update', [TeachersController::class, 'update'])->name('teachers.update');
+
 
 // Route::inertia('teachers', 'Teachers/Index');
 

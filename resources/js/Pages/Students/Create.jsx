@@ -48,7 +48,7 @@ export default function CreateStudent() {
                                 placeholder="Enter email"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.name && <div>{errors.email}</div>}
+                            {errors.email && <div>{errors.email}</div>}
 
                         </div>
 
@@ -62,7 +62,7 @@ export default function CreateStudent() {
                                 placeholder="Age"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.name && <div>{errors.age}</div>}
+                            {errors.age && <div>{errors.age}</div>}
 
                         </div>
 
@@ -75,7 +75,7 @@ export default function CreateStudent() {
                                 onChange={(e) => setData('date_of_birth', e.target.value)}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.name && <div>{errors.date_of_birth}</div>}
+                            {errors.date_of_birth && <div>{errors.date_of_birth}</div>}
 
                         </div>
 
@@ -90,7 +90,7 @@ export default function CreateStudent() {
                                 <option value="m">Male</option>
                                 <option value="f">Female</option>
                             </select>
-                            {errors.name && <div>{errors.gender}</div>}
+                            {errors.gender && <div>{errors.gender}</div>}
 
                         </div>
 
@@ -104,7 +104,7 @@ export default function CreateStudent() {
                                 placeholder="Score"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.name && <div>{errors.score}</div>}
+                            {errors.score && <div>{errors.score}</div>}
 
                         </div>
                         <div className="col-span-full">
@@ -115,7 +115,7 @@ export default function CreateStudent() {
                                 onChange={e => setData('image', e.target.files[0])}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             />
-                            {errors.name && <div>{errors.image}</div>}
+                            {errors.image && <div>{errors.image}</div>}
 
                         </div>
                         <div className="col-span-full mt-4">

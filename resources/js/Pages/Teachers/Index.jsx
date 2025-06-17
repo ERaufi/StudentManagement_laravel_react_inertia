@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react'; // ✅ New
 
 export default function TeachersIndex() {
-    const { teachers, search: initialSearch, sort, direction } = usePage().props;
+    const { teachers, search: initialSearch, sort, direction, flash } = usePage().props;
     const { t } = useTranslation();
 
     const [search, setSearch] = useState(initialSearch || '');
@@ -90,6 +90,7 @@ export default function TeachersIndex() {
                                 <th className="p-2 cursor-pointer" onClick={() => handleSort('name')}>Name{renderSortArrow('name')}</th>
                                 <th className="p-2 cursor-pointer" onClick={() => handleSort('email')}>Email{renderSortArrow('email')}</th>
                                 <th className="p-2 cursor-pointer" onClick={() => handleSort('phone')}>Phone{renderSortArrow('phone')}</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,6 +100,14 @@ export default function TeachersIndex() {
                                     <td className="p-2">{teacher.name}</td>
                                     <td className="p-2">{teacher.email}</td>
                                     <td className="p-2">{teacher.phone}</td>
+                                    <td>
+                                        <Link
+                                            href={`teacher/edit/${teacher.id}`}
+                                            className="inline-block px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition"
+                                        >
+                                            Edit
+                                        </Link>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

@@ -110,7 +110,7 @@ class StudentsController extends Controller
             $student->image = $path;
         }
 
-        $student->save();
+        $student->update();
 
         return redirect()->route('students.index')->with('success', 'Student updated successfully.');
     }

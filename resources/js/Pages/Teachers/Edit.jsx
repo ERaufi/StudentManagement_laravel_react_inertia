@@ -1,24 +1,25 @@
 import { useForm } from '@inertiajs/react';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 
-export default function CreateTeacher() {
+export default function EditTeacher({ teacher }) {
     const { data, setData, post, errors } = useForm({
-        name: '',
-        email: '',
-        phone: '',
+        id: teacher.id,
+        name: teacher.name,
+        email: teacher.email,
+        phone: teacher.phone,
         image: null,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('teachers.store'));
+        post(route('teachers.update'));
     };
 
     return (
         <DashboardLayout>
             <main className="p-6 flex justify-center items-center min-h-screen bg-gray-100">
                 <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8">
-                    <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Create Teacher</h1>
+                    <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Edit Teacher</h1>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
@@ -75,7 +76,7 @@ export default function CreateTeacher() {
                                 type="submit"
                                 className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200 text-lg font-semibold"
                             >
-                                Save Teacher
+                                Update Teacher
                             </button>
                         </div>
                     </form>

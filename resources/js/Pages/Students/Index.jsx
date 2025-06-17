@@ -99,8 +99,14 @@ export default function StudentsIndex() {
                                     <td className="p-2">{student.gender}</td>
                                     <td className="p-2">{student.score}</td>
                                     <td>
-                                        <Link href={`student/edit/${student.id}`}>Edit</Link>
+                                        <Link
+                                            href={`student/edit/${student.id}`}
+                                            className="inline-block px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition"
+                                        >
+                                            Edit
+                                        </Link>
                                     </td>
+
                                 </tr>
                             ))}
                         </tbody>
