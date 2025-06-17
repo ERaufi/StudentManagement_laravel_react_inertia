@@ -63,6 +63,6 @@ class TeachersController extends Controller
 
         $teacher->save();
 
-        return redirect()->route('teachers.index');
+        return redirect()->route('teachers.index')->with('success', 'Student created successfully.');
     }
 }
