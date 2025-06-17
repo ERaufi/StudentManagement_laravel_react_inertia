@@ -105,4 +105,16 @@ class TeachersController extends Controller
 
         return redirect()->route('teachers.index')->with('success', 'Teacher created successfully.');
     }
+
+    public function destroy($id)
+    {
+        $teacher = Teachers::where('id', $id)->first();
+        if ($teacher->image && Storage::disk('public')->exists($teacher->image)) {
+            Storage::disk('public')->delete($teacher->image);
+        }
+
+        $teacher->delete();
+
+        return redirect()->route('teachers.index')->with('success', 'Teacher deleted successfully.');
+    }
 }

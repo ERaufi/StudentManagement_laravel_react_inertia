@@ -114,4 +114,17 @@ class StudentsController extends Controller
 
         return redirect()->route('students.index')->with('success', 'Student updated successfully.');
     }
+
+
+    public function destroy($id)
+    {
+        $student = Students::where('id', $id)->first();
+        if ($student->image && Storage::disk('public')->exists($student->image)) {
+            Storage::disk('public')->delete($student->image);
+        }
+
+        $student->delete();
+
+        return redirect()->route('students.index')->with('success', 'student deleted successfully.');
+    }
 }
