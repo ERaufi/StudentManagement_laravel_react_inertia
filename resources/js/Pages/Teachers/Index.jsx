@@ -47,11 +47,16 @@ export default function TeachersIndex() {
         setMsg(null);
     }, 2000);
 
+
     const handleDelete = (id) => {
-        if (confirm('Are you sure you want to delete this teacher?')) {
-            router.delete(route('teachers.destroy', id));
+        if (confirm('Are you sure you want to delete this student?')) {
+            router.visit(route('teachers.destroy', id), {
+                method: 'delete',
+            });
         }
     };
+
+
     return (
         <DashboardLayout>
             <main className="flex-1 p-6">

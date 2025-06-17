@@ -49,7 +49,9 @@ export default function StudentsIndex() {
 
     const handleDelete = (id) => {
         if (confirm('Are you sure you want to delete this student?')) {
-            router.delete(route('students.destroy', id));
+            router.visit(route('students.destroy', id), {
+                method: 'delete',
+            });
         }
     };
 
