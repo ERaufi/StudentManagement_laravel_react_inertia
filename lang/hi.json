@@ -9,5 +9,14 @@
     "Name": "नाम",
     "Last Name": "उपनाम",
     "Language": "भाषा",
-    "welcome": "स्वागत है"
+    "welcome": "स्वागत है",
+    "Student Details": "छात्र विवरण",
+    "Back to List": "सूची पर वापस जाएँ",
+    "Email": "ईमेल",
+    "Age": "आयु",
+    "Date of Birth": "जन्म तिथि",
+    "Gender": "लिंग",
+    "Score": "अंक",
+    "Male": "पुरुष",
+    "Female": "महिला"
 }

@@ -127,4 +127,14 @@ class StudentsController extends Controller
 
         return redirect()->route('students.index')->with('success', 'student deleted successfully.');
     }
+
+    public function show($id)
+    {
+        $student = Students::findOrFail($id);
+        $student->image_url = $student->image ? asset('storage/' . $student->image) : null;
+
+        return Inertia::render('Students/View', [
+            'student' => $student
+        ]);
+    }
 }

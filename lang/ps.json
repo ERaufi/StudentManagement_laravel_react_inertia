@@ -9,5 +9,14 @@
     "Name": "نوم",
     "Last Name": "تخلص",
     "Language": "ژبه",
-    "welcome": "ښه راغلاست"
+    "welcome": "ښه راغلاست",
+    "Student Details": "د زده کوونکي تفصیلات",
+    "Back to List": "بیرته لیست ته",
+    "Email": "برېښنالیک",
+    "Age": "عمر",
+    "Date of Birth": "د زیږون نېټه",
+    "Gender": "جنس",
+    "Score": "نمبرونه",
+    "Male": "نارینه",
+    "Female": "ښځینه"
 }
