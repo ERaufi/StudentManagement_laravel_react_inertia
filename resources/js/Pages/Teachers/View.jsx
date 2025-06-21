@@ -67,6 +67,40 @@ export default function View() {
                                 <div className="text-red-500">{t('No user linked')}</div>
                             )}
                         </div>
+
+                        {/* Classes Table */}
+                        <div className="mt-6 border-t pt-4">
+                            <h2 className="text-xl font-semibold mb-4">{t('Classes')}</h2>
+                            {teacher.classes && teacher.classes.length > 0 ? (
+                                <table className="min-w-full table-auto border-collapse border border-gray-300">
+                                    <thead>
+                                        <tr className="bg-gray-100">
+                                            <th className="border border-gray-300 px-4 py-2 text-left">{t('Name')}</th>
+                                            <th className="border border-gray-300 px-4 py-2 text-left">{t('Description')}</th>
+                                            <th className="border border-gray-300 px-4 py-2">{t('Actions')}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {teacher.classes.map((cls) => (
+                                            <tr key={cls.id} className="hover:bg-gray-50">
+                                                <td className="border border-gray-300 px-4 py-2">{cls.name}</td>
+                                                <td className="border border-gray-300 px-4 py-2">{cls.description}</td>
+                                                <td className="border border-gray-300 px-4 py-2 text-center">
+                                                    <Link
+                                                        href=""
+                                                        className="inline-block px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
+                                                    >
+                                                        {t('Show Students')}
+                                                    </Link>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            ) : (
+                                <p className="text-gray-500">{t('No classes assigned')}</p>
+                            )}
+                        </div>
                     </div>
                 </div>
             </main>

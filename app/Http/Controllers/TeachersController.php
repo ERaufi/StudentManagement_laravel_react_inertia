@@ -140,7 +140,7 @@ class TeachersController extends Controller
 
     public function show($id)
     {
-        $teacher = Teachers::with('user')->findOrFail($id);
+        $teacher = Teachers::with('user', 'classes')->findOrFail($id);
         $teacher->image_url = $teacher->image ? asset('storage/' . $teacher->image) : null;
 
         return Inertia::render('Teachers/View', [
