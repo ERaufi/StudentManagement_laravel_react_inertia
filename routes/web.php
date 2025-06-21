@@ -41,16 +41,6 @@ Route::controller(ClassesController::class)->group(function () {
 });
 
 
-Route::controller(StudentClassesController::class)->group(function () {
-    Route::get('student_classes', 'index')->name('student_classes.index');
-    Route::get('student_classes/create', 'create')->name('student_classes.create');
-    Route::post('student_classes', 'store')->name('student_classes.store');
-    Route::get('student_classes/{id}/edit', 'edit')->name('student_classes.edit');
-    Route::put('student_classes/{id}', 'update')->name('student_classes.update');
-    Route::delete('student_classes/{id}', 'destroy')->name('student_classes.destroy');
-    Route::get('student_classes/{id}', 'show')->name('student_classes.show');
-});
-
 Route::fallback(function () {
     return Inertia::render('Errors/NotFound');
 });

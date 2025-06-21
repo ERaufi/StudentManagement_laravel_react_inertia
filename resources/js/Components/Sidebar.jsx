@@ -35,14 +35,6 @@ export default function Sidebar() {
                         Classes
                     </Link>
                 </li>
-                <li>
-                    <Link
-                        href={`/student_classes?lang=${lang}`}
-                        className={`${baseLinkClasses} ${url === `/student_classes?lang=${lang}` ? activeClasses : inactiveClasses}`}
-                    >
-                        Student Classes
-                    </Link>
-                </li>
             </ul>
         </aside>
     );
