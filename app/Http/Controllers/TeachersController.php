@@ -137,4 +137,14 @@ class TeachersController extends Controller
 
         return redirect()->route('teachers.index')->with('success', 'Teacher deleted successfully.');
     }
+
+    public function show($id)
+    {
+        $teacher = Teachers::with('user')->findOrFail($id);
+        $teacher->image_url = $teacher->image ? asset('storage/' . $teacher->image) : null;
+
+        return Inertia::render('Teachers/View', [
+            'teacher' => $teacher
+        ]);
+    }
 }
