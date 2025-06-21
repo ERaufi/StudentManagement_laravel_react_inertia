@@ -44,6 +44,8 @@ Route::controller(ClassesController::class)->group(function () {
     Route::get('classes/{id}', 'show')->name('classes.show');
 });
 
+require __DIR__ . '/auth.php';
+
 
 Route::fallback(function () {
     return Inertia::render('Errors/NotFound');
