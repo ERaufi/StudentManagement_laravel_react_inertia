@@ -6,6 +6,9 @@ use App\Models\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class StudentsController extends Controller
 {
@@ -38,11 +41,12 @@ class StudentsController extends Controller
         return Inertia::render('Students/Create');
     }
 
+
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students,email',
+            'email' => 'required|email|unique:students,email|unique:users,email',
             'age' => 'required|integer|min:1|max:150',
             'date_of_birth' => 'nullable|date',
             'gender' => 'required|in:m,f',
@@ -50,27 +54,43 @@ class StudentsController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $student = new Students();
-        $student->name = $request->name;
-        $student->email = $request->email;
-        $student->age = $request->age;
-        $student->date_of_birth = $request->date_of_birth;
-        $student->gender = $request->gender;
-        $student->score = $request->score;
-        $student->user_id = 1;
+        try {
+            DB::beginTransaction();
 
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make('password');
+            $user->save();
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('students', 'public');
-            $student->image = $path;
+            $student = new Students();
+            $student->name = $request->name;
+            $student->email = $request->email;
+            $student->age = $request->age;
+            $student->date_of_birth = $request->date_of_birth;
+            $student->gender = $request->gender;
+            $student->score = $request->score;
+            $student->user_id = $user->id;
+
+            if ($request->hasFile('image')) {
+                $path = $request->file('image')->store('students', 'public');
+                $student->image = $path;
+            }
+
+            $student->save();
+
+            DB::commit();
+
+            return redirect()->route('students.index')->with('success', 'Student and user created successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->withErrors([
+                'error' => 'Something went wrong: ' . $e->getMessage()
+            ]);
         }
-
-
-
-        $student->save();
-
-        return redirect()->route('students.index')->with('success', 'Student created successfully.');
     }
+
 
     public function edit($id)
     {

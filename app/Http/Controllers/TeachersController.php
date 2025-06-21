@@ -6,6 +6,10 @@ use App\Models\Teachers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 class TeachersController extends Controller
 {
@@ -42,29 +46,45 @@ class TeachersController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:teachers,email',
+            'email' => 'required|email|unique:teachers,email|unique:users,email',
             'phone' => 'required|string|max:20',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $teacher = new Teachers();
-        $teacher->name = $request->name;
-        $teacher->email = $request->email;
-        $teacher->phone = $request->phone;
-        $teacher->user_id = 1;
+        try {
+            DB::beginTransaction();
 
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make('password');
+            $user->save();
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('teachers', 'public');
-            $teacher->image = $path;
+            $teacher = new Teachers();
+            $teacher->name = $request->name;
+            $teacher->email = $request->email;
+            $teacher->phone = $request->phone;
+            $teacher->user_id = $user->id;
+
+            if ($request->hasFile('image')) {
+                $path = $request->file('image')->store('teachers', 'public');
+                $teacher->image = $path;
+            }
+
+            $teacher->save();
+
+            DB::commit();
+
+            return redirect()->route('teachers.index')->with('success', 'Teacher and user created successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->withErrors([
+                'error' => 'Something went wrong: ' . $e->getMessage()
+            ]);
         }
-
-
-        $teacher->save();
-
-        return redirect()->route('teachers.index')->with('success', 'Student created successfully.');
     }
 
 
