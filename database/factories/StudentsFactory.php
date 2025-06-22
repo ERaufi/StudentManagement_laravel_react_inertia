@@ -18,6 +18,12 @@ class StudentsFactory extends Factory
     public function definition(): array
     {
         $user = User::factory()->create(['user_type' => 'student']);
+
+        $year = now()->year;
+        $month = rand(1, 12);
+        $day = rand(1, 28); // Safe for all months
+
+        $createdAt = now()->setDate($year, $month, $day)->startOfDay();
         return [
             'user_id' => $user->id,
             'name' => $user->name,
@@ -26,6 +32,8 @@ class StudentsFactory extends Factory
             'date_of_birth' => $this->faker->date(),
             'gender' => $this->faker->randomElement(['m', 'f']),
             'score' => $this->faker->numberBetween(0, 100),
+            'created_at' => $createdAt,
+
         ];
     }
 }

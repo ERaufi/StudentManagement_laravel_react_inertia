@@ -17,11 +17,18 @@ class TeachersFactory extends Factory
      */
     public function definition(): array
     {
+        $year = now()->year;
+        $month = rand(1, 12);
+        $day = rand(1, 28); // Safe for all months
+
+        $createdAt = now()->setDate($year, $month, $day)->startOfDay();
+
         return [
             'user_id' => User::factory()->create(['user_type' => 'teacher'])->id,
             'name' => $this->faker->name(),
-            'email' => $this->faker->email(),
+            'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber,
+            'created_at' => $createdAt,
         ];
     }
 }
