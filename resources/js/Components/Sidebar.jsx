@@ -27,6 +27,14 @@ export default function Sidebar() {
                         Teachers
                     </Link>
                 </li>
+                <li>
+                    <Link
+                        href={`/classes?lang=${lang}`}
+                        className={`${baseLinkClasses} ${url === `/classes?lang=${lang}` ? activeClasses : inactiveClasses}`}
+                    >
+                        Classes
+                    </Link>
+                </li>
             </ul>
         </aside>
     );

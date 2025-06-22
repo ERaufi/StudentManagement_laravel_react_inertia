@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentClassesController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\TeachersController;
 use Illuminate\Foundation\Application;
@@ -18,9 +20,6 @@ Route::controller(StudentsController::class)->group(function () {
     Route::delete('student/destroy/{id}', 'destroy')->name('students.destroy');
     Route::get('student/view/{id}', 'show')->name('students.show');
 
-    // Route::get('students', 'withData');
-    // Route::get('students/{name}/{last_name}', 'withRouteParameters');
-    // Route::get('students/{name?}/{last_name?}', 'withOptionalRouteParameters');
 });
 
 Route::get('/teachers', [TeachersController::class, 'index'])->name('teachers.index');
@@ -31,13 +30,15 @@ Route::post('teacher-update', [TeachersController::class, 'update'])->name('teac
 Route::delete('teachers/delete/{id}', [TeachersController::class, 'destroy'])->name('teachers.destroy');
 
 
-// Route::inertia('teachers', 'Teachers/Index');
-
-
-// Students
-
-// Teachers
-
+Route::controller(ClassesController::class)->group(function () {
+    Route::get('classes', 'index')->name('classes.index');
+    Route::get('classes/create', 'create')->name('classes.create');
+    Route::post('classes', 'store')->name('classes.store');
+    Route::get('classes/{id}/edit', 'edit')->name('classes.edit');
+    Route::put('classes/{id}', 'update')->name('classes.update');
+    Route::delete('classes/{id}', 'destroy')->name('classes.destroy');
+    Route::get('classes/{id}', 'show')->name('classes.show');
+});
 
 
 Route::fallback(function () {

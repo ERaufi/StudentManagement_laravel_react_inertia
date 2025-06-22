@@ -23,6 +23,12 @@ export default function CreateStudent() {
             <main className="p-6 flex justify-center items-center min-h-screen bg-gray-100">
                 <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
                     <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Create Student</h1>
+                    {errors.error && (
+                        <div className="col-span-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                            <strong className="font-bold">Error:</strong>
+                            <span className="block sm:inline ml-2">{errors.error}</span>
+                        </div>
+                    )}
 
                     <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="col-span-full">
