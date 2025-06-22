@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class StudentsController extends Controller
 {
@@ -84,6 +85,12 @@ class StudentsController extends Controller
             return redirect()->route('students.index')->with('success', 'Student and user created successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
+
+            Log::error('Error', [
+                'Message' => $e->getMessage(),
+                'Traces' => $e->getTrace()
+            ]);
+
 
             return redirect()->back()->withInput()->withErrors([
                 'error' => 'Something went wrong: ' . $e->getMessage()
