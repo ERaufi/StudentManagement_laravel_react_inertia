@@ -9,5 +9,14 @@
     "Name": "Ad",
     "Last Name": "Soyad",
     "Language": "Dil",
-    "welcome": "Hoş geldiniz"
+    "welcome": "Hoş geldiniz",
+    "Student Details": "Öğrenci Detayları",
+    "Back to List": "Listeye Geri Dön",
+    "Email": "E-posta",
+    "Age": "Yaş",
+    "Date of Birth": "Doğum Tarihi",
+    "Gender": "Cinsiyet",
+    "Score": "Puan",
+    "Male": "Erkek",
+    "Female": "Kadın"
 }

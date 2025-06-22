@@ -9,5 +9,14 @@
     "Name": "Name",
     "Last Name": "Last Name",
     "Language": "Language",
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "Student Details": "Student Details",
+    "Back to List": "Back to List",
+    "Email": "Email",
+    "Age": "Age",
+    "Date of Birth": "Date of Birth",
+    "Gender": "Gender",
+    "Score": "Score",
+    "Male": "Male",
+    "Female": "Female"
 }

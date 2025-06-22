@@ -9,5 +9,14 @@
     "Name": "نام",
     "Last Name": "نام خانوادگی",
     "Language": "زبان",
-    "welcome": "خوش آمدید"
+    "welcome": "خوش آمدید",
+    "Student Details": "جزئیات دانش‌آموز",
+    "Back to List": "بازگشت به لیست",
+    "Email": "ایمیل",
+    "Age": "سن",
+    "Date of Birth": "تاریخ تولد",
+    "Gender": "جنسیت",
+    "Score": "امتیاز",
+    "Male": "مرد",
+    "Female": "زن"
 }

@@ -16,6 +16,8 @@ Route::controller(StudentsController::class)->group(function () {
     Route::get('student/edit/{id}', 'edit');
     Route::post('student-update', 'update');
     Route::delete('student/destroy/{id}', 'destroy')->name('students.destroy');
+    Route::get('student/view/{id}', 'show')->name('students.show');
+
     // Route::get('students', 'withData');
     // Route::get('students/{name}/{last_name}', 'withRouteParameters');
     // Route::get('students/{name?}/{last_name?}', 'withOptionalRouteParameters');

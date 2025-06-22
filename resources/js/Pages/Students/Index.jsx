@@ -121,6 +121,14 @@ export default function StudentsIndex() {
                                         >
                                             Delete
                                         </button>
+
+                                        <Link
+                                            href={route('students.show', student.id)}
+                                            className="inline-block px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition mr-2"
+                                        >
+                                            View
+                                        </Link>
+
                                     </td>
 
                                 </tr>
