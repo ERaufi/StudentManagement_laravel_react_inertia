@@ -157,7 +157,7 @@ class StudentsController extends Controller
 
     public function show($id)
     {
-        $student = Students::findOrFail($id);
+        $student = Students::with('user')->findOrFail($id);
         $student->image_url = $student->image ? asset('storage/' . $student->image) : null;
 
         return Inertia::render('Students/View', [

@@ -19,15 +19,19 @@ Route::controller(StudentsController::class)->group(function () {
     Route::post('student-update', 'update');
     Route::delete('student/destroy/{id}', 'destroy')->name('students.destroy');
     Route::get('student/view/{id}', 'show')->name('students.show');
-
 });
 
-Route::get('/teachers', [TeachersController::class, 'index'])->name('teachers.index');
-Route::get('/teachers/create', [TeachersController::class, 'create'])->name('teachers.create');
-Route::post('/teachers', [TeachersController::class, 'store'])->name('teachers.store');
-Route::get('teacher/edit/{id}', [TeachersController::class, 'edit']);
-Route::post('teacher-update', [TeachersController::class, 'update'])->name('teachers.update');
-Route::delete('teachers/delete/{id}', [TeachersController::class, 'destroy'])->name('teachers.destroy');
+Route::controller(TeachersController::class)->group(function () {
+    Route::get('/teachers',  'index')->name('teachers.index');
+    Route::get('/teachers/create',  'create')->name('teachers.create');
+    Route::post('/teachers',  'store')->name('teachers.store');
+    Route::get('teacher/edit/{id}',  'edit');
+    Route::post('teacher-update',  'update')->name('teachers.update');
+    Route::delete('teachers/delete/{id}',  'destroy')->name('teachers.destroy');
+    Route::get('teachers/view/{id}', 'show')->name('teachers.show');
+});
+
+
 
 
 Route::controller(ClassesController::class)->group(function () {
