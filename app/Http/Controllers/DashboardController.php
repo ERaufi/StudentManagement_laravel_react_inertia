@@ -32,21 +32,39 @@ class DashboardController extends Controller
             ->get()
             ->pluck('total', 'month');
 
-        // Build final chart data for all 12 months
-        $chartData = collect(range(1, 12))->map(function ($month) use ($studentMonthly, $teacherMonthly) {
-            return [
-                'name' => date('M', mktime(0, 0, 0, $month, 1)), // Jan, Feb, ...
+        // Define month names manually
+        $months = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec'
+        ];
+
+        // Build chart data using a simple loop
+        $chartData = [];
+        for ($month = 1; $month <= 12; $month++) {
+            $chartData[] = [
+                'name' => $months[$month - 1],
                 'Students' => $studentMonthly->get($month, 0),
                 'Teachers' => $teacherMonthly->get($month, 0),
             ];
-        });
+        }
 
+        // Render the dashboard with stats and chart data
         return Inertia::render('Dashboard', [
             'stats' => [
                 'students' => Students::count(),
                 'teachers' => Teachers::count(),
                 'classes' => Classes::count(),
-                'subjects' => 12, // Or make dynamic
+                'subjects' => 12, // Update if dynamic later
             ],
             'chartData' => $chartData,
         ]);
