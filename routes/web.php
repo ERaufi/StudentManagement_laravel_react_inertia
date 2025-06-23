@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentClassesController;
 use App\Http\Controllers\StudentsController;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::controller(StudentsController::class)->group(function () {
     Route::get('students', 'index')->name('students.index');
     Route::get('/students/create', 'create')->name('students.create');

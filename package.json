@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "i18next": "^25.2.1",
-        "react-i18next": "^15.5.2"
+        "react-i18next": "^15.5.2",
+        "recharts": "^2.15.4"
     }
 }
