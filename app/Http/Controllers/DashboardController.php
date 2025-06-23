@@ -12,10 +12,6 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
-    //
-
-
-
     public function index()
     {
         // Get students grouped by month

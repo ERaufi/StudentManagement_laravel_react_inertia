@@ -5,29 +5,6 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, Cart
 export default function Dashboard() {
     const { stats, chartData } = usePage().props;
 
-    const cards = [
-        {
-            title: 'Students',
-            value: stats.students,
-            color: 'from-blue-100 to-blue-50 text-blue-800 border-blue-200',
-        },
-        {
-            title: 'Teachers',
-            value: stats.teachers,
-            color: 'from-green-100 to-green-50 text-green-800 border-green-200',
-        },
-        {
-            title: 'Classes',
-            value: stats.classes,
-            color: 'from-purple-100 to-purple-50 text-purple-800 border-purple-200',
-        },
-        {
-            title: 'Subjects',
-            value: stats.subjects,
-            color: 'from-pink-100 to-pink-50 text-pink-800 border-pink-200',
-        },
-    ];
-
     return (
         <DashboardLayout>
             <main className="p-6 space-y-10">
@@ -36,15 +13,29 @@ export default function Dashboard() {
 
                 {/* Stat Cards */}
                 <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {cards.map((card, index) => (
-                        <div
-                            key={index}
-                            className={`bg-gradient-to-br ${card.color} border shadow-md rounded-xl px-6 py-5 flex flex-col gap-2 hover:shadow-lg transition duration-200`}
-                        >
-                            <span className="text-sm font-medium uppercase text-gray-600">{card.title}</span>
-                            <span className="text-3xl font-bold">{card.value}</span>
-                        </div>
-                    ))}
+                    {/* Students Card */}
+                    <div className="bg-gradient-to-br from-blue-100 to-blue-50 text-blue-800 border border-blue-200 shadow-md rounded-xl px-6 py-5 flex flex-col gap-2 hover:shadow-lg transition duration-200">
+                        <span className="text-sm font-medium uppercase text-gray-600">Students</span>
+                        <span className="text-3xl font-bold">{stats.students}</span>
+                    </div>
+
+                    {/* Teachers Card */}
+                    <div className="bg-gradient-to-br from-green-100 to-green-50 text-green-800 border border-green-200 shadow-md rounded-xl px-6 py-5 flex flex-col gap-2 hover:shadow-lg transition duration-200">
+                        <span className="text-sm font-medium uppercase text-gray-600">Teachers</span>
+                        <span className="text-3xl font-bold">{stats.teachers}</span>
+                    </div>
+
+                    {/* Classes Card */}
+                    <div className="bg-gradient-to-br from-purple-100 to-purple-50 text-purple-800 border border-purple-200 shadow-md rounded-xl px-6 py-5 flex flex-col gap-2 hover:shadow-lg transition duration-200">
+                        <span className="text-sm font-medium uppercase text-gray-600">Classes</span>
+                        <span className="text-3xl font-bold">{stats.classes}</span>
+                    </div>
+
+                    {/* Subjects Card */}
+                    <div className="bg-gradient-to-br from-pink-100 to-pink-50 text-pink-800 border border-pink-200 shadow-md rounded-xl px-6 py-5 flex flex-col gap-2 hover:shadow-lg transition duration-200">
+                        <span className="text-sm font-medium uppercase text-gray-600">Subjects</span>
+                        <span className="text-3xl font-bold">{stats.subjects}</span>
+                    </div>
                 </section>
 
                 {/* Bar Chart */}
