@@ -12,6 +12,7 @@ use App\Http\Middleware\TeachersMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\RolePermissionController;
 
 
 Route::middleware('auth')->group(function () {
@@ -59,7 +60,22 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', [UsersController::class, 'destroy'])->name('destroy');
         Route::get('/{id}', [UsersController::class, 'show'])->name('show');
     });
+
+
+    Route::prefix('roles')->group(function () {
+        Route::get('/', [RolePermissionController::class, 'index'])->name('roles.index');
+        Route::get('/create', [RolePermissionController::class, 'create'])->name('roles.create');
+        Route::post('/roles', [RolePermissionController::class, 'store'])->name('roles.store');
+        Route::get('add-permission-to-role/{id}', [RolePermissionController::class, 'AddPermissionToRole']);
+        Route::post('assign-permissions-to-role/{id}', [RolePermissionController::class, 'AssignPermissions']);
+        Route::get('add-users-to-role/{id}', [RolePermissionController::class, 'AddUsersToRole']);
+        Route::post('assign-users-to-role/{id}', [RolePermissionController::class, 'AssignUsersToRole']);
+    });
 });
+
+
+
+
 
 
 require __DIR__ . '/auth.php';

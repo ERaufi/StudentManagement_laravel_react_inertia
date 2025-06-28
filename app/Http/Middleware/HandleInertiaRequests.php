@@ -2,8 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Tighten\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
@@ -44,6 +47,9 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'success' => fn() => $request->session()->get('success')
             ],
+            // 'roles' => Role::with('permissions')->get(),
+            // 'permissions' => Permission::all(),
+            // 'users' => User::with('roles')->get(),
         ];
     }
 }

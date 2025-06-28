@@ -18,15 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        Teachers::factory(20)->create();
-        Students::factory(100)->create();
-        Classes::factory(50)->create();
-        StudentClasses::factory(200)->create();
+        // Teachers::factory(20)->create();
+        // Students::factory(100)->create();
+        // Classes::factory(50)->create();
+        // StudentClasses::factory(200)->create();
+        $this->call(PermissionsSeeder::class);
     }
 }
