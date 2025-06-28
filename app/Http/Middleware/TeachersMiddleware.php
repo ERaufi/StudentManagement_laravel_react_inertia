@@ -17,10 +17,9 @@ class TeachersMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->user_type === 'teacher') {
+        if (Auth::user()->user_type === 'teacher' || $request->user()->user_type === 'admin') {
             return $next($request);
         }
         return redirect()->back();
-
     }
 }

@@ -16,7 +16,7 @@ class StudentsMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->user_type === 'student') {
+        if ($request->user()->user_type === 'student'|| $request->user()->user_type === 'admin') {
             return $next($request);
         }
         return redirect()->back();
