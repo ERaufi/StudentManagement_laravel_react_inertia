@@ -30,6 +30,7 @@ class PermissionsSeeder extends Seeder
             'create users',
             'edit users',
             'delete users',
+            'manage roles',
         ];
 
         foreach ($permissions as $permission) {

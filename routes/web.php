@@ -2,14 +2,9 @@
 
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StudentClassesController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\UsersController;
-use App\Http\Middleware\StudentsMiddleware;
-use App\Http\Middleware\TeachersMiddleware;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\RolePermissionController;
@@ -17,7 +12,7 @@ use App\Http\Controllers\RolePermissionController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::middleware(StudentsMiddleware::class)->controller(StudentsController::class)->group(function () {
+    Route::controller(StudentsController::class)->group(function () {
         Route::get('students', 'index')->name('students.index');
         Route::get('/students/create', 'create')->name('students.create');
         Route::post('/students', 'store')->name('students.store');
@@ -27,7 +22,7 @@ Route::middleware('auth')->group(function () {
         Route::get('student/view/{id}', 'show')->name('students.show');
     });
 
-    Route::controller(TeachersController::class)->middleware(TeachersMiddleware::class)->group(function () {
+    Route::controller(TeachersController::class)->group(function () {
         Route::get('/teachers',  'index')->name('teachers.index');
         Route::get('/teachers/create',  'create')->name('teachers.create');
         Route::post('/teachers',  'store')->name('teachers.store');
@@ -36,8 +31,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('teachers/delete/{id}',  'destroy')->name('teachers.destroy');
         Route::get('teachers/view/{id}', 'show')->name('teachers.show');
     });
-
-
 
 
     Route::controller(ClassesController::class)->group(function () {

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -50,6 +51,7 @@ class HandleInertiaRequests extends Middleware
             // 'roles' => Role::with('permissions')->get(),
             // 'permissions' => Permission::all(),
             // 'users' => User::with('roles')->get(),
+            'permissions' => Auth::check() ? $request->user()->getAllPermissions()->pluck('name') : [],
         ];
     }
 }
