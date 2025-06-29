@@ -13,6 +13,14 @@ export default function Sidebar() {
             <ul className="space-y-2">
                 <li>
                     <Link
+                        href={`/dashboard?lang=${lang}`}
+                        className={`${baseLinkClasses} ${url === `/dashboard?lang=${lang}` ? activeClasses : inactiveClasses}`}
+                    >
+                        Dashboard
+                    </Link>
+                </li>
+                <li>
+                    <Link
                         href={`/students?lang=${lang}`}
                         className={`${baseLinkClasses} ${url === `/students?lang=${lang}` ? activeClasses : inactiveClasses}`}
                     >
