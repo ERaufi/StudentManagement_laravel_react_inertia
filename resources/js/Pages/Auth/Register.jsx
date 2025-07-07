@@ -6,6 +6,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        user_type: '',
     });
 
     const submit = (e) => {
@@ -65,6 +66,21 @@ export default function Register() {
                             required
                         />
                         {errors.password_confirmation && <p className="text-sm text-red-500 mt-1">{errors.password_confirmation}</p>}
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">User Type</label>
+                        <select
+                            name="user_type"
+                            value={data.user_type}
+                            onChange={(e) => setData('user_type', e.target.value)}
+                            className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                        >
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                        {errors.user_type && <div>{errors.user_type}</div>}
                     </div>
 
                     <button
