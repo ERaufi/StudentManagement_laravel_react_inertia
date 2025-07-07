@@ -15,8 +15,6 @@ class RolePermissionController extends Controller
     {
         return Inertia::render('Roles/Index', [
             'roles' => Role::all(),
-            // 'permissions' => Permission::all(),
-            // 'users' => User::with('roles')->get(),
         ]);
     }
 
@@ -31,11 +29,9 @@ class RolePermissionController extends Controller
     {
         $request->validate([
             'name' => 'required|string|unique:roles,name',
-            // 'permissions' => 'array'
         ]);
 
         $role = Role::create(['name' => $request->name]);
-        // $role->syncPermissions($request->permissions);
 
         return redirect()->route('roles.index')->with('success', 'Role created successfully.');
     }
@@ -75,6 +71,10 @@ class RolePermissionController extends Controller
     {
         $role = Role::findOrFail($id);
         $userIds = $request->input('users', []);
+
+        User::role($role->name)->get()->each(function ($user) use ($role) {
+            $user->removeRole($role);
+        });
 
         // Sync users to the role (attach role to each user)
         foreach (User::whereIn('id', $userIds)->get() as $user) {

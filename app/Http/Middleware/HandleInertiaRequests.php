@@ -48,9 +48,6 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'success' => fn() => $request->session()->get('success')
             ],
-            // 'roles' => Role::with('permissions')->get(),
-            // 'permissions' => Permission::all(),
-            // 'users' => User::with('roles')->get(),
             'permissions' => Auth::check() ? $request->user()->getAllPermissions()->pluck('name') : [],
         ];
     }
