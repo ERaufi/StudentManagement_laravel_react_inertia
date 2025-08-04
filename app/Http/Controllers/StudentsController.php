@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\StudentsExport;
+use App\Imports\StudentsImport;
 use App\Models\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -10,6 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentsController extends Controller
 {
@@ -163,5 +166,21 @@ class StudentsController extends Controller
         return Inertia::render('Students/View', [
             'student' => $student
         ]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new StudentsExport, 'students.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv',
+        ]);
+
+        Excel::import(new StudentsImport, $request->file('file'));
+
+        return redirect()->back()->with('success', 'Students imported successfully.');
     }
 }

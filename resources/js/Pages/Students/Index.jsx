@@ -89,6 +89,30 @@ export default function StudentsIndex() {
                     >
                         {t('Create Student')}
                     </Link>
+                    <a
+                        href={route('students.export')}
+                        className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition"
+                    >
+                        {t('Export Students')}
+                    </a>
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            const formData = new FormData(e.target);
+                            router.post(route('students.import'), formData, {
+                                forceFormData: true,
+                            });
+                        }}
+                        className="mb-4 flex items-center gap-4"
+                    >
+                        <input type="file" name="file" accept=".csv,.xlsx" required />
+                        <button
+                            type="submit"
+                            className="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded hover:bg-purple-700 transition"
+                        >
+                            {t('Import Students')}
+                        </button>
+                    </form>
                     <table className="min-w-full table-auto">
                         <thead>
                             <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
