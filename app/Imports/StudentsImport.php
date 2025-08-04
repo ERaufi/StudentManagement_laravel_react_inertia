@@ -18,7 +18,6 @@ class StudentsImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        Log::info($row['email']);
         $user = User::firstOrCreate(
             ['email' => $row['email']],
             [
