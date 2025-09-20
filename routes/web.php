@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
         Route::post('student-update', 'update');
         Route::delete('student/destroy/{id}', 'destroy')->name('students.destroy');
         Route::get('student/view/{id}', 'show')->name('students.show');
+        Route::get('/students/export', 'export')->name('students.export');
+        Route::post('/students/import', 'import')->name('students.import');
     });
 
     Route::controller(TeachersController::class)->group(function () {
