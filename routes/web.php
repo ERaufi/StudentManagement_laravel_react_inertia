@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
         Route::get('student/view/{id}', 'show')->name('students.show');
         Route::get('/students/export', 'export')->name('students.export');
         Route::post('/students/import', 'import')->name('students.import');
+        Route::get('/students/{id}/report-pdf', 'studentReport')->name('students.report.pdf');
     });
 
     Route::controller(TeachersController::class)->group(function () {

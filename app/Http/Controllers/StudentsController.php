@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class StudentsController extends Controller
 {
@@ -182,5 +183,17 @@ class StudentsController extends Controller
         Excel::import(new StudentsImport, $request->file('file'));
 
         return redirect()->back()->with('success', 'Students imported successfully.');
+    }
+
+    public function studentReport($id)
+    {
+        // Load student with related classes + scores
+        $student = Students::with('studentClasses.class')->findOrFail($id);
+
+        // Generate PDF
+        $pdf = Pdf::loadView('pdfs.student_report', compact('student'))
+            ->setPaper('a4', 'portrait');
+
+        return $pdf->stream("student_report_{$student->id}.pdf");
     }
 }
