@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         // Teachers::factory(20)->create();
         // Students::factory(100)->create();
         // Classes::factory(50)->create();
-        // StudentClasses::factory(200)->create();
-        $this->call(PermissionsSeeder::class);
+        // StudentClasses::factory(500)->create();
+        // $this->call(PermissionsSeeder::class);
     }
 }

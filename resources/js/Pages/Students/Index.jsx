@@ -2,7 +2,7 @@ import DashboardLayout from '@/Layouts/DashboardLayout';
 import { usePage, router, Link } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react'; // ✅ New
-
+import StudentsPDF from '../../Components/StudentsPDF';
 export default function StudentsIndex() {
     const { students, search: initialSearch, sort, direction, flash } = usePage().props;
     const { t } = useTranslation();
@@ -152,7 +152,7 @@ export default function StudentsIndex() {
                                         >
                                             View
                                         </Link>
-
+                                        <StudentsPDF studentId={student.id} />
                                     </td>
 
                                 </tr>
