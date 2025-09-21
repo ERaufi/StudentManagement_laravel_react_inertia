@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/students/export', 'export')->name('students.export');
         Route::post('/students/import', 'import')->name('students.import');
         Route::get('/students/{id}/report-pdf', 'studentReport')->name('students.report.pdf');
+        Route::get('/students/{id}/email-report', 'emailReport')->name('students.email.report');
     });
 
     Route::controller(TeachersController::class)->group(function () {
